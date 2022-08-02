@@ -1,0 +1,29 @@
+{
+    "draw_roi_area": true,
+    
+    "roi_type": "polygon_1",
+    "polygon_1": ["POLYGON((0 0, 1 0, 1 1, 0 1))"],
+
+    "roi_color": [255, 255, 0, 0.7],
+    "roi_line_thickness": 4,
+    "roi_fill": false,
+    "draw_result": true,
+    "draw_confidence": true,
+    "thresh": 0.25,
+    "language": "en",
+
+    "target_rect_color": [0, 0, 255, 0],
+    "object_rect_line_thickness": 3,
+    "object_text_color": [255, 255, 255, 0],
+    "object_text_bg_color": [50, 50, 50, 0],
+    "object_text_size": 30,
+    "mark_text_en": ["person"],
+    "mark_text_zh": ["人体"],
+    "draw_warning_text": true,
+    "warning_text_en": "WARNING! WARNING!",
+    "warning_text_zh": "警告!",
+    "warning_text_size": 30,
+    "warning_text_color": [255, 255, 255, 0],
+    "warning_text_bg_color": [0, 0, 200, 0],
+    "warning_text_left_top": [0, 0]
+}

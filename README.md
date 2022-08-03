@@ -234,12 +234,52 @@ nvidia-docker run -itd --privileged ccr.ccs.tencentyun.com/public_images/ubuntu1
                 "target_info" : 
                 [
                         {
-                                "confidence" : 0.37,
-                                "height" : 34,
+                                "confidence" : 0.81,
+                                "height" : 245,
                                 "name" : "person",
-                                "width" : 24,
-                                "x" : 72,
-                                "y" : 30
+                                "width" : 86,
+                                "x" : 66,
+                                "y" : 92
+                        },
+                        {
+                                "confidence" : 0.87,
+                                "height" : 229,
+                                "name" : "person",
+                                "width" : 89,
+                                "x" : 260,
+                                "y" : 104
+                        },
+                        {
+                                "confidence" : 0.91,
+                                "height" : 239,
+                                "name" : "person",
+                                "width" : 89,
+                                "x" : 348,
+                                "y" : 112
+                        },
+                        {
+                                "confidence" : 0.92,
+                                "height" : 235,
+                                "name" : "person",
+                                "width" : 77,
+                                "x" : 155,
+                                "y" : 123
+                        },
+                        {
+                                "confidence" : 0.92,
+                                "height" : 256,
+                                "name" : "person",
+                                "width" : 69,
+                                "x" : 0,
+                                "y" : 81
+                        },
+                        {
+                                "confidence" : 0.94,
+                                "height" : 281,
+                                "name" : "person",
+                                "width" : 110,
+                                "x" : 488,
+                                "y" : 98
                         }
                 ]
         },
@@ -248,12 +288,52 @@ nvidia-docker run -itd --privileged ccr.ccs.tencentyun.com/public_images/ubuntu1
                 "objects" : 
                 [
                         {
-                                "confidence" : 0.37,
-                                "height" : 34,
+                                "confidence" : 0.81,
+                                "height" : 245,
                                 "name" : "person",
-                                "width" : 24,
-                                "x" : 72,
-                                "y" : 30
+                                "width" : 86,
+                                "x" : 66,
+                                "y" : 92
+                        },
+                        {
+                                "confidence" : 0.87,
+                                "height" : 229,
+                                "name" : "person",
+                                "width" : 89,
+                                "x" : 260,
+                                "y" : 104
+                        },
+                        {
+                                "confidence" : 0.91,
+                                "height" : 239,
+                                "name" : "person",
+                                "width" : 89,
+                                "x" : 348,
+                                "y" : 112
+                        },
+                        {
+                                "confidence" : 0.92,
+                                "height" : 235,
+                                "name" : "person",
+                                "width" : 77,
+                                "x" : 155,
+                                "y" : 123
+                        },
+                        {
+                                "confidence" : 0.92,
+                                "height" : 256,
+                                "name" : "person",
+                                "width" : 69,
+                                "x" : 0,
+                                "y" : 81
+                        },
+                        {
+                                "confidence" : 0.94,
+                                "height" : 281,
+                                "name" : "person",
+                                "width" : 110,
+                                "x" : 488,
+                                "y" : 98
                         }
                 ]
         }
@@ -269,20 +349,94 @@ nvidia-docker run -itd --privileged ccr.ccs.tencentyun.com/public_images/ubuntu1
         json: {
         "algorithm_data" : 
         {
-                "is_alert" : false,
-                "target_info" : []
+                "is_alert" : true,
+                "target_info" : 
+                [
+                        {
+                                "confidence" : 0.81,
+                                "height" : 245,
+                                "name" : "人体",
+                                "width" : 86,
+                                "x" : 66,
+                                "y" : 92
+                        },
+                        {
+                                "confidence" : 0.87,
+                                "height" : 229,
+                                "name" : "人体",
+                                "width" : 89,
+                                "x" : 260,
+                                "y" : 104
+                        },
+                        {
+                                "confidence" : 0.91,
+                                "height" : 239,
+                                "name" : "人体",
+                                "width" : 89,
+                                "x" : 348,
+                                "y" : 112
+                        },
+                        {
+                                "confidence" : 0.92,
+                                "height" : 235,
+                                "name" : "人体",
+                                "width" : 77,
+                                "x" : 155,
+                                "y" : 123
+                        }
+                ]
         },
         "model_data" : 
         {
                 "objects" : 
                 [
                         {
-                                "confidence" : 0.37,
-                                "height" : 34,
+                                "confidence" : 0.81,
+                                "height" : 245,
                                 "name" : "人体",
-                                "width" : 24,
-                                "x" : 72,
-                                "y" : 30
+                                "width" : 86,
+                                "x" : 66,
+                                "y" : 92
+                        },
+                        {
+                                "confidence" : 0.87,
+                                "height" : 229,
+                                "name" : "人体",
+                                "width" : 89,
+                                "x" : 260,
+                                "y" : 104
+                        },
+                        {
+                                "confidence" : 0.91,
+                                "height" : 239,
+                                "name" : "人体",
+                                "width" : 89,
+                                "x" : 348,
+                                "y" : 112
+                        },
+                        {
+                                "confidence" : 0.92,
+                                "height" : 235,
+                                "name" : "人体",
+                                "width" : 77,
+                                "x" : 155,
+                                "y" : 123
+                        },
+                        {
+                                "confidence" : 0.92,
+                                "height" : 256,
+                                "name" : "人体",
+                                "width" : 69,
+                                "x" : 0,
+                                "y" : 81
+                        },
+                        {
+                                "confidence" : 0.94,
+                                "height" : 281,
+                                "name" : "人体",
+                                "width" : 110,
+                                "x" : 488,
+                                "y" : 98
                         }
                 ]
         }

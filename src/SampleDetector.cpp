@@ -152,10 +152,11 @@ bool SampleDetector::ProcessImage(const cv::Mat& img, std::vector<BoxInfo>& DetO
     cv::Mat tmp_resized;    
     
     cv::resize(img, tmp_resized, new_size);
+    cv::cvtColor(tmp_resized, tmp_resized, cv::COLOR_BGR2RGB);
     m_Resized = cv::Mat( cv::Size(m_InputSize.width, m_InputSize.height), CV_8UC3, cv::Scalar(114, 114, 114));    
+    
     tmp_resized.copyTo(m_Resized(cv::Rect{0, 0, tmp_resized.cols, tmp_resized.rows}));
-
-    // cv::imwrite("resized.jpg", m_Resized);
+    
     m_Resized.convertTo(m_Normalized, CV_32FC3, 1/255.);
     cv::split(m_Normalized, m_InputWrappers); 
 
@@ -165,7 +166,7 @@ bool SampleDetector::ProcessImage(const cv::Mat& img, std::vector<BoxInfo>& DetO
     ret = cudaStreamSynchronize(m_CudaStream);    
     float scale = std::min(m_InputSize.width / (img.cols * 1.0), m_InputSize.height / (img.rows * 1.0));
     decode_outputs((float*)m_ArrayHostMemory[m_iOutputIndex], mThresh, DetObjs, scale, img.cols, img.rows);
-    runNms(DetObjs, mThresh);
+    runNms(DetObjs, 0.45);
 }
 
 void SampleDetector::runNms(std::vector<BoxInfo>& objects, float thresh) 
@@ -203,29 +204,34 @@ void SampleDetector::runNms(std::vector<BoxInfo>& objects, float thresh)
 }
 
 void SampleDetector::decode_outputs(float* prob, float thresh, std::vector<BoxInfo>& objects, float scale, const int img_w, const int img_h) 
-{
-    SDKLOG(INFO) << "---------" << scale;
+{    
     std::vector<BoxInfo> proposals;
     for(int i = 0; i < m_iBoxNums; ++i)
     {
-        int index = i * (m_iClassNums + 5);        
+        int index = i * (m_iClassNums + 5);            
         if(prob[index + 4] > mThresh)
         {            
-            float x = prob[index] / scale;
-            float y = prob[index + 1] / scale;
-            float w = prob[index + 2] / scale;
-            float h = prob[index + 3] / scale;
-            float* max_cls_pos = std::max_element(prob + index + 5, prob + index + 4 + m_iClassNums);
+            
+            float x = prob[index];
+            float y = prob[index + 1];
+            float w = prob[index + 2];
+            float h = prob[index + 3];            
+            x/=scale;
+            y/=scale;
+            w/=scale;
+            h/=scale;
+            float* max_cls_pos = std::max_element(prob + index + 5, prob + index + 4 + m_iClassNums);           
             if((*max_cls_pos) * prob[index+4] > mThresh)
             {
+                
                 cv::Rect box{x- w / 2, y - h / 2, w, h};
                 box = box & cv::Rect(0, 0, img_w, img_h);
                 if( box.area() > 0)
                 {
-                    BoxInfo box_info = { box.x, box.y, box.x + box.width, box.y + box.height, (*max_cls_pos) * prob[index+4], max_cls_pos-(prob + index + 5)};
+                    BoxInfo box_info = { box.x, box.y, box.x + box.width, box.y + box.height, (*max_cls_pos) * prob[index+4], max_cls_pos - (prob + index + 5)};
                     objects.push_back(box_info);
                 }
             }
         }
-    }
+    }    
 }

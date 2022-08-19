@@ -153,7 +153,8 @@ bool SampleDetector::ProcessImage(const cv::Mat& img, std::vector<BoxInfo>& DetO
     
     cv::resize(img, tmp_resized, new_size);
     cv::cvtColor(tmp_resized, tmp_resized, cv::COLOR_BGR2RGB);
-    m_Resized = cv::Mat( cv::Size(m_InputSize.width, m_InputSize.height), CV_8UC3, cv::Scalar(114, 114, 114));    
+    if(m_Resized.empty())
+        m_Resized = cv::Mat( cv::Size(m_InputSize.width, m_InputSize.height), CV_8UC3, cv::Scalar(114, 114, 114));    
     
     tmp_resized.copyTo(m_Resized(cv::Rect{0, 0, tmp_resized.cols, tmp_resized.rows}));
     

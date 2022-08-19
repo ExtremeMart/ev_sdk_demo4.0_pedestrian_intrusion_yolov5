@@ -220,7 +220,7 @@ void SampleDetector::decode_outputs(float* prob, float thresh, std::vector<BoxIn
             y/=scale;
             w/=scale;
             h/=scale;
-            float* max_cls_pos = std::max_element(prob + index + 5, prob + index + 4 + m_iClassNums);           
+            float* max_cls_pos = std::max_element(prob + index + 5, prob + index + 5 + m_iClassNums);           
             if((*max_cls_pos) * prob[index+4] > mThresh)
             {
                 

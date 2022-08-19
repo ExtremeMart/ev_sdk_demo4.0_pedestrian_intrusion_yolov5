@@ -225,7 +225,7 @@ void SampleDetector::decode_outputs(float* prob, float thresh, std::vector<BoxIn
             {
                 
                 cv::Rect box{x- w / 2, y - h / 2, w, h};
-                box = box & cv::Rect(0, 0, img_w, img_h);
+                box = box & cv::Rect(0, 0, img_w-1, img_h-1);
                 if( box.area() > 0)
                 {
                     BoxInfo box_info = { box.x, box.y, box.x + box.width, box.y + box.height, (*max_cls_pos) * prob[index+4], max_cls_pos - (prob + index + 5)};

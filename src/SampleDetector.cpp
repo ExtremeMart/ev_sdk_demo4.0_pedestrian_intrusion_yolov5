@@ -147,7 +147,7 @@ bool SampleDetector::ProcessImage(const cv::Mat& img, std::vector<BoxInfo>& DetO
 {
     mThresh = thresh;
     DetObjs.clear();  
-    float r = std::min(m_InputSize.width / static_cast<float>(img.rows), m_InputSize.width / static_cast<float>(img.cols));
+    float r = std::min(m_InputSize.height / static_cast<float>(img.rows), m_InputSize.width / static_cast<float>(img.cols));
     cv::Size new_size = cv::Size{img.cols * r, img.rows * r};    
     cv::Mat tmp_resized;    
     
@@ -183,7 +183,7 @@ void SampleDetector::runNms(std::vector<BoxInfo>& objects, float thresh)
         for(int j = i + 1; j < objects.size(); ++j)
         {
             cv::Rect rect1 = cv::Rect{objects[i].x1, objects[i].y1, objects[i].x2 - objects[i].x1, objects[i].y2 - objects[i].y1};
-            cv::Rect rect2 = cv::Rect{objects[j].x1, objects[j].y1, objects[j].x2 - objects[i].x1, objects[j].y2 - objects[j].y1};
+            cv::Rect rect2 = cv::Rect{objects[j].x1, objects[j].y1, objects[j].x2 - objects[j].x1, objects[j].y2 - objects[j].y1};
             if(IOU(rect1, rect2) > thresh)   
             {
                 objects[i].score = 0.f;
